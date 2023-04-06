@@ -6,13 +6,12 @@ const Boton = (props) => {
 
 
   const handleClick = useCallback((e) => {
-
-    const changeColor = (e) => {
+    
+    const changeColor = () => {
       const btn = document.getElementById(props.el.id);
-      btn.classList.toggle("play");
-      const interval = setInterval(() => {
-        btn.classList.toggle("play");
-        clearInterval(interval);
+      btn.classList.add("play");
+      setTimeout(() => {
+        btn.classList.remove("play");
       }, 100);
     };
 
@@ -24,14 +23,17 @@ const Boton = (props) => {
     changeColor();
     props.setString(props.el.id);
   }, [props]);
+  
 
 
   useEffect(() => {
-    if (props.keypress === props.el.keyCode) {
+    //console.log(props.keypress)
+     
+    if (props.keypress.toLowerCase() === props.el.keyTrigger.toLowerCase()) {
       handleClick();
-    
+      
     }
-  }, [handleClick, props.keypress, props.el.keyCode]);
+  }, [props.keypress, props.el.keyTrigger]);
 
   return (
     <div className="drum-pad" id={props.el.id} onClick={(e) => handleClick(e)}>

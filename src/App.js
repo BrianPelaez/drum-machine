@@ -39,20 +39,25 @@ function App() {
     setString(`VOLUMEN: ${e.target.value}`);
   };
 
+  const handleKeyDown = (e) => {
+    setKeypressed(true);
+    setKey(e.key);
+    console.log(e.key)
+  };
+
+  const handleKeyUp = (e) => {
+    setKey("");
+    setKeypressed(false);
+  };
+
   useEffect(() => {
-    window.addEventListener("keydown", (e) => {
-      setKeypressed((prev) => !prev);
-      //console.log(!keypressed);
-      console.log(e.keyCode)
-      setKey(e.keyCode);
-    });
+    window.addEventListener("keydown", handleKeyDown);
+    window.addEventListener("keyup", handleKeyUp);
 
-    window.addEventListener("keyup", (e) => {
-      setKey("");
-      //console.log("Key UP");
-      setKeypressed((prev) => !prev);
-    });
-
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown);
+      window.removeEventListener("keyup", handleKeyUp);
+    };
   }, []);
 
   return (
