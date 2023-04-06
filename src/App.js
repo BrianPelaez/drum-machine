@@ -42,7 +42,7 @@ function App() {
   const handleKeyDown = (e) => {
     setKeypressed(true);
     setKey(e.key);
-    console.log(e.key)
+    //console.log(e.key)
   };
 
   const handleKeyUp = (e) => {
