@@ -33,7 +33,7 @@ const Boton = (props) => {
       handleClick();
       
     }
-  }, [props.keypress, props.el.keyTrigger]);
+  }, [handleClick,props.keypress, props.el.keyTrigger]);
 
   return (
     <div className="drum-pad" id={props.el.id} onClick={(e) => handleClick(e)}>
